@@ -1,0 +1,84 @@
+from PIL import Image, ImageEnhance, ImageFilter
+import os
+
+class ImageProcessor:
+    def __init__(self, image_path):
+        self.image = Image.open(image_path)
+        self.filename = os.path.basename(image_path)
+
+    def resize(self, width, height):
+        """Resize the image to the specified dimensions."""
+        resized_image = self.image.resize((width, height))
+        self._save_image(resized_image, "resized")
+
+    def rotate(self, degrees):
+        """Rotate the image by the specified degrees."""
+        rotated_image = self.image.rotate(degrees)
+        self._save_image(rotated_image, "rotated")
+
+    def adjust_brightness(self, factor):
+        """Adjust the brightness of the image. Factor > 1 brightens, < 1 darkens."""
+        enhancer = ImageEnhance.Brightness(self.image)
+        brightened_image = enhancer.enhance(factor)
+        self._save_image(brightened_image, "brightness_adjusted")
+
+    def apply_filter(self, filter_name):
+        """Apply a filter to the image."""
+        if filter_name == "blur":
+            filtered_image = self.image.filter(ImageFilter.BLUR)
+        elif filter_name == "contour":
+            filtered_image = self.image.filter(ImageFilter.CONTOUR)
+        elif filter_name == "emboss":
+            filtered_image = self.image.filter(ImageFilter.EMBOSS)
+        else:
+            print(f"Unknown filter: {filter_name}")
+            return
+        self._save_image(filtered_image, f"{filter_name}_filter")
+
+    def _save_image(self, image, operation):
+        """Save the processed image with a descriptive filename."""
+        name, ext = os.path.splitext(self.filename)
+        new_filename = f"{name}_{operation}{ext}"
+        image.save(new_filename)
+        print(f"Saved processed image as {new_filename}")
+
+def main():
+    while True:
+        print("\n--- Image Processor ---")
+        print("1. Resize Image")
+        print("2. Rotate Image")
+        print("3. Adjust Brightness")
+        print("4. Apply Filter")
+        print("5. Exit")
+
+        choice = input("Enter your choice (1-5): ")
+
+        if choice == '5':
+            print("Goodbye!")
+            break
+
+        image_path = input("Enter the path to your image: ")
+        if not os.path.exists(image_path):
+            print("Image file not found. Please check the path and try again.")
+            continue
+
+        processor = ImageProcessor(image_path)
+
+        if choice == '1':
+            width = int(input("Enter new width: "))
+            height = int(input("Enter new height: "))
+            processor.resize(width, height)
+        elif choice == '2':
+            degrees = float(input("Enter rotation degrees: "))
+            processor.rotate(degrees)
+        elif choice == '3':
+            factor = float(input("Enter brightness factor (> 1 to brighten, < 1 to darken): "))
+            processor.adjust_brightness(factor)
+        elif choice == '4':
+            filter_name = input("Enter filter name (blur/contour/emboss): ").lower()
+            processor.apply_filter(filter_name)
+        else:
+            print("Invalid choice. Please try again.")
+
+if __name__ == "__main__":
+    main()
