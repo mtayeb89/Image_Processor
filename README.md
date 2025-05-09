@@ -31,10 +31,10 @@ To use this project, you need to have Python installed along with the `Pillow` l
 2. Follow the on-screen prompts to choose an image processing operation:
    - Enter the path to your image file.
    - Choose an operation from the menu:
-     1. **Resize Image**: Input the new width and height for the image.
-     2. **Rotate Image**: Input the degrees by which you want to rotate the image.
-     3. **Adjust Brightness**: Input a brightness factor (e.g., `1.5` to increase brightness, `0.8` to decrease it).
-     4. **Apply Filter**: Choose a filter from `blur`, `contour`, or `emboss`.
+     1- **Resize Image**: Input the new width and height for the image.
+     2- **Rotate Image**: Input the degrees by which you want to rotate the image.
+     3- **Adjust Brightness**: Input a brightness factor (e.g., `1.5` to increase brightness, `0.8` to decrease it).
+     4- **Apply Filter**: Choose a filter from `blur`, `contour`, or `emboss`.
 
 3. The processed image will be saved with a descriptive filename indicating the operation performed (e.g., `image_resized.jpg`, `image_rotated.jpg`).
 
