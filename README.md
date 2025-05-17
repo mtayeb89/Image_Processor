@@ -1,6 +1,6 @@
 # Image Processor
 
-This is a simple Python-based image processing tool that allows you to perform various operations on images, such as resizing, rotating, adjusting brightness, and applying filters. The project uses the `PIL` (Python Imaging Library) module for image manipulation.
+This is a simple Python-based image processing tool that allows you to perform various operations on images, such as resizing, rotating, adjusting brightness, and applying filters. The project uses the `PIL` (Python Imaging library) module for image manipulation.
 
 ## Features
 
